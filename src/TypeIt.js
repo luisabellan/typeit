@@ -144,8 +144,11 @@ export default class TypeIt {
 
   /**
    * Reset each instance like it's brand new.
+   * Optionally pass options that will replace the options
+   * initially defined at instantiation.
+   * @param object options
    */
-  reset() {
+  reset(options = {}) {
     this.destroy();
 
     this.instances = this.instances.map(instance => {
