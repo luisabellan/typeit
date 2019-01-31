@@ -58,15 +58,17 @@ export default class Instance {
 
   /**
    * Reset the instance to new status.
+   *
+   * @param object options
    */
-  reset() {
+  reset(options) {
     this.queue.reset();
 
     return new Instance({
       element: this.$e,
       id: this.id,
-      options: this.opts,
-      queue: this.queue.waiting
+      options: merge({}, this.opts, options),
+      queue: options.strings === undefined ? this.queue.waiting : []
     });
   }
 
