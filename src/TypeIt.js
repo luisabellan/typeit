@@ -61,9 +61,9 @@ export default function TypeIt(element, options) {
    * @return {array}
    */
   const _getAllChars = () => {
-    if (_elementIsInput) {
-      return toArray(_element.value);
-    }
+    // if (_elementIsInput) {
+    //   return toArray(_element.value);
+    // }
 
     return getAllTypeableNodes(_element, _cursor, true);
   };
@@ -92,7 +92,7 @@ export default function TypeIt(element, options) {
    * @return {void}
    */
   const _setUpCursor = () => {
-    if (_elementIsInput || !_opts.cursor) {
+    if (!_opts.cursor) {
       return null;
     }
 
@@ -349,10 +349,10 @@ export default function TypeIt(element, options) {
   };
 
   const _empty = async () => {
-    if (_elementIsInput) {
-      _element.value = "";
-      return;
-    }
+    // if (_elementIsInput) {
+    //   _element.value = "";
+    //   return;
+    // }
 
     _getAllChars().forEach(n => {
       removeNode(n);
@@ -369,11 +369,11 @@ export default function TypeIt(element, options) {
         let allChars = _getAllChars();
 
         if (allChars.length) {
-          if (_elementIsInput) {
-            _element.value = _element.value.slice(0, -1);
-          } else {
-            removeNode(allChars[_cursorPosition]);
-          }
+          // if (_elementIsInput) {
+          //   _element.value = _element.value.slice(0, -1);
+          // } else {
+          removeNode(allChars[_cursorPosition]);
+          // }
         }
 
         removeEmptyElements(_element);
@@ -543,7 +543,7 @@ export default function TypeIt(element, options) {
   };
 
   let _element = selectorToElement(element);
-  let _elementIsInput = isInput(_element);
+  // let _elementIsInput = isInput(_element);
   let _pace = [];
   let _timeouts = [];
   let _cursorPosition = 0;
@@ -557,7 +557,7 @@ export default function TypeIt(element, options) {
 
   let _opts = merge(defaults, options);
   _opts = merge(_opts, {
-    html: _elementIsInput ? false : _opts.html,
+    // html: _elementIsInput ? false : _opts.html,
     nextStringDelay: calculateDelay(_opts.nextStringDelay),
     loopDelay: calculateDelay(_opts.loopDelay)
   });
